@@ -3,7 +3,7 @@ return {
   "KEY60228/reviewthem.nvim",
   dependencies = {
     "sindrets/diffview.nvim", -- optional (need at least one diff tool)
-    "KEY60228/alt-diffview", -- alternative diff tool
+    "KEY60228/alt-diffview.nvim", -- alternative diff tool
     "nvim-telescope/telescope.nvim", -- optional
   },
   config = function()
