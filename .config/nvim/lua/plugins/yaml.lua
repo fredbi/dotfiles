@@ -12,20 +12,20 @@ return {
       }
       return opts
     end,
+    init = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "yaml",
+        callback = function(ev)
+          -- Space + y + f to manually format YAML
+          vim.keymap.set("n", "<leader>yf", function()
+            require("conform").format({
+              bufnr = ev.buf,
+              formatters = { "yamlfmt" },
+            })
+            print("YAML formatted (arrays will be compacted)")
+          end, { buffer = ev.buf, desc = "Format YAML file" })
+        end,
+      })
+    end,
   },
 }
-
--- Manual YAML formatting keymap
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "yaml",
-  callback = function(ev)
-    -- Space + y + f to manually format YAML
-    vim.keymap.set("n", "<leader>yf", function()
-      require("conform").format({
-        bufnr = ev.buf,
-        formatters = { "yamlfmt" }
-      })
-      print("YAML formatted (arrays will be compacted)")
-    end, { buffer = ev.buf, desc = "Format YAML file" })
-  end,
-})
